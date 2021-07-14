@@ -10,7 +10,7 @@ const commentController = {
                 { _id: params.pizzaId },
                 { $push: { comments: _id } },
                 // this receives back the updated pizza with the new comment included {new: true}
-                { new: true }
+                { new: true, runValidators: true  }
             );
         })
         .then(dbPizzaData => {
@@ -27,7 +27,7 @@ const commentController = {
         Comment.findOneAndUpdate(
             { _id: params.commentId },
             { $push: { replies: body } },
-            { new: true }
+            { new: true, runValidators: true  }
         )
         .then(dbPizzaData => {
             if (!dbPizzaData) {
